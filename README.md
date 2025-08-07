@@ -2,13 +2,14 @@
 title: AI Cover Letter Generator
 emoji: 💼
 colorFrom: green
-colorTo: emerald
+colorTo: green
 sdk: gradio
 sdk_version: 4.16.0
 app_file: app.py
 pinned: true
 license: mit
 ---
+
 
 # 🏢 AI Cover Letter Generator
 
