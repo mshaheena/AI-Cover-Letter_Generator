@@ -1,27 +1,29 @@
 body {
+  background-color: #f8f9fc;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f9f9fc;
 }
 
 .gr-button {
-  background-color: #6c63ff;
-  color: white;
+  background-color: #6366f1;
   border-radius: 8px;
+  color: white;
   padding: 10px 20px;
+  font-weight: bold;
 }
 
 .gr-button:hover {
-  background-color: #574fd6;
+  background-color: #4f46e5;
 }
 
-.gr-textbox input, .gr-textbox textarea {
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  padding: 10px;
-  width: 100%;
+.gr-textbox textarea {
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: 12px;
   font-size: 14px;
+  background-color: #ffffff;
 }
 
-h1, h2 {
-  color: #4e4e4e;
+.gr-textbox label {
+  font-weight: 600;
+  color: #4b5563;
 }
