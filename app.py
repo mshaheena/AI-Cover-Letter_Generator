@@ -5,33 +5,37 @@ from cover_letter_utils import (
     export_cover_letter_to_pdf
 )
 
-# ✅ Interface function
-def cover_letter_interface(resume_file, job_description):
-    if resume_file is None or job_description.strip() == "":
-        return "❌ Please upload a resume and enter a job description."
-    
-    resume_text = extract_text_from_resume(resume_file)
-    letter = generate_cover_letter(resume_text, job_description)
-    pdf_path = export_cover_letter_to_pdf(letter)
-    
-    return letter, pdf_path
+generated_text = ""
 
-# ✅ Gradio UI
-demo = gr.Interface(
-    fn=cover_letter_interface,
-    inputs=[
-        gr.File(label="Upload Resume (PDF)", file_types=[".pdf"]),
-        gr.Textbox(label="Job Description", placeholder="Paste job description here...")
-    ],
-    outputs=[
-        gr.Textbox(label="Generated Cover Letter", lines=20),
-        gr.File(label="📄 Download Cover Letter (PDF)")
-    ],
-    title="📄 AI Cover Letter Generator",
-    description="Upload your resume and paste a job description to generate a tailored AI-powered cover letter.",
-    theme=gr.themes.Soft()
-)
+def generate(resume_pdf, job_description):
+    global generated_text
+    resume_text = extract_text_from_resume(resume_pdf.name)
+    generated_text = generate_cover_letter(resume_text, job_description)
+    return generated_text
 
-if __name__ == "__main__":
-    demo.launch()
+def download_pdf():
+    if generated_text:
+        file_path = export_cover_letter_to_pdf(generated_text)
+        return file_path
 
+with gr.Blocks(css="style.css") as demo:
+    gr.Markdown("## 📝 AI Cover Letter Generator")
+    gr.Markdown("Upload your resume and paste a job description to generate a tailored AI-powered cover letter.")
+
+    with gr.Row():
+        with gr.Column(scale=1):
+            resume_file = gr.File(label="📂 Upload Resume (PDF)", file_types=[".pdf"])
+            job_desc = gr.Textbox(lines=3, placeholder="Job Description", label="💼 Job Description")
+            submit_btn = gr.Button("🚀 Submit", variant="primary")
+            clear_btn = gr.Button("🧹 Clear", variant="secondary")
+
+        with gr.Column(scale=1):
+            output_letter = gr.Textbox(label="📄 Generated Cover Letter", lines=18)
+            download_btn = gr.Button("📥 Download Cover Letter (PDF)")
+
+    submit_btn.click(generate, inputs=[resume_file, job_desc], outputs=[output_letter])
+    download_btn.click(download_pdf, outputs=[])
+
+    clear_btn.click(lambda: ("", "", ""), inputs=[], outputs=[resume_file, job_desc, output_letter])
+
+demo.launch()
