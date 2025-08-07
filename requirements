@@ -1,0 +1,5 @@
+gradio==4.16.0
+pdfplumber
+transformers
+reportlab
+scikit-learn
