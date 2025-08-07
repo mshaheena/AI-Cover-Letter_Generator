@@ -11,6 +11,7 @@ license: mit
 ---
 
 
+
 # 🏢 AI Cover Letter Generator
 
 Create a professional, tailored cover letter from your resume and job description using LLMs.
