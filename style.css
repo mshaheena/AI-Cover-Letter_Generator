@@ -1,0 +1,27 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9fc;
+}
+
+.gr-button {
+  background-color: #6c63ff;
+  color: white;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+.gr-button:hover {
+  background-color: #574fd6;
+}
+
+.gr-textbox input, .gr-textbox textarea {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  width: 100%;
+  font-size: 14px;
+}
+
+h1, h2 {
+  color: #4e4e4e;
+}
